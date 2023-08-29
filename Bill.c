@@ -21,7 +21,7 @@ struct orders{
 void generateBillHeader(char name[50],char date[30]){
     printf("\n\n");
 
-    printf("\t\t\t\t==========MOONLIGHT RESTAURANT==========");
+    printf("\n\t\t\t\t==========MOONLIGHT RESTAURANT==========");
     printf("\n\t\t\t\t    --------------------------------");
     printf("\n\n\t\t\tDate:%s",date);
     printf("\n\t\t\tInvoice To : %s",name);
@@ -71,7 +71,7 @@ int main(){
     while(contFlag == 'y'){
     int invoiceFound = 0;
     float total =0;
-    printf("\t\t===========MOONLIGHT RESTAURENT===========");
+    printf("\n\n\t\t===========MOONLIGHT RESTAURENT===========");
     printf("\n\n\t\t\t 1.Generatee Invoice");
     printf("\n\t\t\t 2.Show all Invoice");
     printf("\n\t\t\t 3.Search Invoice");
