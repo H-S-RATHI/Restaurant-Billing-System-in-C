@@ -1,8 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
-#include <windows.h>
 #include <string.h>
+
+#ifdef _WIN32
+#include <windows.h> // For Windows systems
+#else
+#include <unistd.h>  // For non-Windows systems
+#endif
+
+#ifdef _WIN32
+// Function to clear the screen on Windows
+void clearScreen() {
+    system("cls");
+}
+#else
+// Function to clear the screen on non-Windows systems
+void clearScreen() {
+    printf("\033[H\033[J"); // ANSI escape codes to clear the screen
+}
+#endif
 
 struct items{
     char item[20];
@@ -84,8 +100,8 @@ int main(){
     fgetc(stdin);
      switch(opt){
         case 1:
-        system("cls");
-            printf("\n\t\t------------------------------------------");
+        clearScreen();
+            printf("\n\t\t\t------------------------------------------");
             printf("\n\t\t\tPlease Enter the name of the Customer    :");
             fgets(ord.customer,50,stdin);  
             ord.customer[strlen(ord.customer)-1] = 0;
@@ -130,9 +146,9 @@ int main(){
             break;
 
             case 2:
-                system("cls");
+                clearScreen();
                 fp = fopen("RestaurantBill.dat","r");
-                printf("\n  ****Your Previous Invoice****");
+                printf("\n\t\t\t  ****Your Previous Invoice****");
                 while(fread(&ord,sizeof(struct orders),1,fp)){
                     float tot;
                     generateBillHeader(ord.customer,ord.date);
@@ -149,7 +165,7 @@ int main(){
             //fgetc("stdin");
             fgets(name,50,stdin);
             name[strlen(name)-1] = 0;
-                system("cls");
+                clearScreen();
                 fp = fopen("RestaurantBill.dat","r");
                 printf("\n\t\t\t  ****Invoice of %s****",name);
                 while(fread(&ord,sizeof(struct orders),1,fp)){
